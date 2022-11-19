@@ -20,10 +20,11 @@ class ProductManager {
 
     const product = {
       id: this.#getMaxId() + 1,
-      code,
       title,
       description,
       price,
+      thumbnail,
+      code,
       stock
     }
 
@@ -52,25 +53,36 @@ class ProductManager {
 
 }
 
+
+// Testing proccess
+
+// Class instace creation
 const productManager = new ProductManager()
-
-productManager.addProduct('title1','description1', 100, '/img/product1.jpg', 'A678N45H', 1000)
-// Testing repeat product code
-productManager.addProduct('title2','description2', 200, '/img/product2.jpg', 'A678N45H', 2000)
-productManager.addProduct('title2','description2', 200, '/img/product2.jpg', 'LM876N49', 2000)
-productManager.addProduct('title3','description3', 300, '/img/product3.jpg', 'LMN76HGC', 3000)
-productManager.addProduct('title4','description4', 400, '/img/product4.jpg', 'MK764HNJ', 4000)
-
 console.log(productManager.getProducts())
 
-// Test method to get product by id
-console.log(productManager.getproductById(2))
+// Test addProduct() method
+productManager.addProduct('producto prueba', 'Este es uin producto de prueba', 200, 'Sin imagen', 'abcd123', 25)
+console.log(productManager.getProducts())
 
-// Testing validation of required fields
-productManager.addProduct('description1', 400, '/img/product1.jpg', 'MK764HNJ', 4000)
-productManager.addProduct('title1', 100, '/img/product1.jpg', 'A678N45H', 1000)
-productManager.addProduct('title1','description1','/img/product1.jpg', 'A678N45H', 1000)
-productManager.addProduct('title1','description1', 100, 'A678N45H', 1000)
-productManager.addProduct('title1','description1', 100, '/img/product1.jpg', 1000)
-productManager.addProduct('title1','description1', 100, '/img/product1.jpg', 'A678N45H')
+// Test product code validation on addMethod()
+productManager.addProduct('producto prueba', 'Este es uin producto de prueba', 200, 'Sin imagen', 'abcd123', 25)
 
+// Test validation of required fields
+// Empty name
+productManager.addProduct('Este es un producto de prueba 2', 300, 'Sin imagen 2', 'KDMVN78JKDSN', 765)
+// Empty description
+productManager.addProduct('priducto de prueba 2', 300, 'Sin imagen 2', 'KDMVN78JKDSN', 765)
+// Empty price
+productManager.addProduct('priducto de prueba 2','Este es un producto de prueba 2', 'Sin imagen 2', 'KDMVN78JKDSN', 765)
+// Empty thumbnail
+productManager.addProduct('priducto de prueba 2','Este es un producto de prueba 2', 300, 'KDMVN78JKDSN', 765)
+// Empty code
+productManager.addProduct('priducto de prueba 2','Este es un producto de prueba 2', 300, 'Sin imagen 2', 765)
+// Empty stock
+productManager.addProduct('priducto de prueba 2','Este es un producto de prueba 2', 300, 'Sin imagen 2', 'KDMVN78JKDSN')
+
+// Test getProductById() method
+console.log(productManager.getproductById(1))
+productManager.getproductById(10)
+
+console.log(productManager.getProducts())
